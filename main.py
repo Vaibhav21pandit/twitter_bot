@@ -1,6 +1,7 @@
 import csv
-import tweepy
 import os
+os.system('pip install tweepy')
+import tweepy
 import json
 from since_post import check_last_retweet
 from bot import readCSV,writeCSV,retweet_latest
