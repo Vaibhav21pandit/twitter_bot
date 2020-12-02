@@ -32,15 +32,17 @@ def retweet_latest(csv):
   since_ids=readCSV(csv)
   for user,id in since_ids.items():
     post=api.user_timeline(user,since_id=id,count=1)
-    print(len(post))
-    if len(post)!=0:
-      retweet_id=post[0].id
-      api.retweet(retweet_id)
-      retweets+=1
-      new_dict[user]=retweet_id
-      print(f'Posted {retweets} new tweets!!! ')
-    else:
-      new_dict[user]=id
+    try:
+      if len(post)!=0 and post[0].__dict__['_json']['extended_entities']['media'][0]['type']=="video":
+        retweet_id=post[0].id
+        api.retweet(retweet_id)
+        retweets+=1
+        new_dict[user]=retweet_id
+      else:
+        new_dict[user]=id
+    except:
+        new_dict[user]=id
+  print(f'Posted {retweets} new tweets!!! ')
   writeCSV(new_dict)
 
 

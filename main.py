@@ -2,9 +2,10 @@ import csv
 import tweepy
 import os
 import json
+from pull_new_followers import updateFollowing
 from since_post import check_last_retweet
 from bot import readCSV,writeCSV,retweet_latest
-from pull_new_followers import updateFollowing
+
 
 
 def Authenticate(file_name):
@@ -15,14 +16,14 @@ def Authenticate(file_name):
   return tweepy.API(auth)
 
 
-if __name__=="__main__":
-  api=Authenticate('./keys.json')
-  if os.path.isfile('dict.csv'):
-    pass
-  else:
-    os.mkdir('dict.csv')
-  updateFollowing("dict.csv")
-  check_last_retweet('dict.csv')
-  retweet_latest('dict.csv')
-  
+
+api=Authenticate('./keys.json')
+if os.path.isfile('dict.csv'):
+  pass
+else:
+  os.mkdir('dict.csv')
+updateFollowing("dict.csv")
+check_last_retweet('dict.csv')
+retweet_latest('dict.csv')
+
 
