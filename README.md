@@ -7,7 +7,7 @@ A twitter bot that retweets posts from users it follows.
 
 ✔️update media upload script
 
-⬜Scraping media from reddit
+✔️Scraping media from reddit
 
 ⬜converting videos to gif with ffmpeg & python(with metadata for upload)
 
