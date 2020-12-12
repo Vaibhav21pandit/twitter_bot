@@ -26,7 +26,7 @@ def readCSV(fname):
       return dict(reader)
 
 # using the already tweeted ids to retweet only the new ones and updating the since_Ids dict
-def retweet_latest(csv):
+def post_latest(csv):
   retweets=0
   new_dict={}
   since_ids=readCSV(csv)
@@ -34,8 +34,7 @@ def retweet_latest(csv):
     post=api.user_timeline(user,since_id=id,count=1)
     try:
       if len(post)!=0 and post[0].__dict__['_json']['extended_entities']['media'][0]['type']=="video":
-        retweet_id=post[0].id
-        api.retweet(retweet_id)
+        api.update_status(post[0].__dict__['_json']['entities']['media'][0]['expanded_url'])
         retweets+=1
         new_dict[user]=retweet_id
       else:
@@ -47,7 +46,7 @@ def retweet_latest(csv):
 
 
 if __name__=='__main__':  
-  retweet_latest('dict.csv')
+  post_latest('dict.csv')
   
 
 

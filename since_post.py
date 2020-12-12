@@ -19,7 +19,6 @@ def check_last_retweet(csv):
   r=0
   since_ids=readCSV(csv)
   for user,id in since_ids.items():
-    print(user,id)
     if str(id)=="0":
       try:
         # print(user,id)

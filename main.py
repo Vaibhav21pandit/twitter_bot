@@ -4,7 +4,7 @@ os.system('pip install tweepy')
 import tweepy
 import json
 from since_post import check_last_retweet
-from bot import readCSV,writeCSV,retweet_latest
+from bot import readCSV,writeCSV,post_latest
 from pull_new_followers import updateFollowing
 
 
@@ -24,6 +24,6 @@ if __name__=="__main__":
     os.mkdir('dict.csv')
   updateFollowing("dict.csv")
   check_last_retweet('dict.csv')
-  retweet_latest('dict.csv')
+  post_latest('dict.csv')
   
 
